@@ -1,11 +1,16 @@
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
 require 'rubygems'
 require 'spork'
+require 'factory_girl'
+require 'capybara/rspec'
+# require "paperclip/matchers"
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
 Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
-  require File.expand_path("../../spec/dummy/config/environment", __FILE__)
+  require File.expand_path("../../spec/test_app/config/environment", __FILE__)
   require 'rspec/rails'
   require 'rspec/autorun'
 
@@ -57,7 +62,7 @@ end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path("../dummy/config/environment", __FILE__)
+require File.expand_path("../test_app/config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 
@@ -96,4 +101,9 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+end
+
+Spork.each_run do
+  # This code will be run each time you run your specs.
+  FactoryGirl.reload
 end
