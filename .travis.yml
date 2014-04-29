@@ -16,9 +16,8 @@ before_script:
 bundler_args: --binstubs=./bundler_stubs
 
 addons:
-	code_climate:
-		 repo_token: 161c371501ee0f5ff7656178f8265702fd9f6a069652bcbeeee38002a3add8c9
-
+  code_climate:
+    repo_token: 161c371501ee0f5ff7656178f8265702fd9f6a069652bcbeeee38002a3add8c9
 branches:
   only:
     - master
