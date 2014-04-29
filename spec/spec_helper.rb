@@ -1,3 +1,5 @@
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
 require 'rubygems'
 require 'spork'
 require 'factory_girl'
