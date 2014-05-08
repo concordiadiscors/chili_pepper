@@ -3,6 +3,7 @@ PATH
   specs:
     chili_pepper (0.0.1)
       acts_as_list (~> 0.4.0)
+      friendly_id (~> 5.0.0)
       rails (~> 4.0.4)
 
 GEM
@@ -63,6 +64,8 @@ GEM
       railties (>= 3.0.0)
     ffi (1.9.3)
     formatador (0.2.4)
+    friendly_id (5.0.3)
+      activerecord (>= 4.0.0)
     guard (2.6.0)
       formatador (>= 0.2.4)
       listen (~> 2.7)
