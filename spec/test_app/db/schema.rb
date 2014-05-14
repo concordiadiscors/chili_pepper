@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140508094807) do
+ActiveRecord::Schema.define(version: 20140514141708) do
 
   create_table "chili_pepper_menus", force: true do |t|
     t.string   "name"
@@ -26,6 +26,18 @@ ActiveRecord::Schema.define(version: 20140508094807) do
   end
 
   add_index "chili_pepper_menus", ["slug"], name: "index_chili_pepper_menus_on_slug", unique: true
+
+  create_table "chili_pepper_sections", force: true do |t|
+    t.integer  "menu_id"
+    t.text     "description"
+    t.string   "name"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "slug"
+  end
+
+  add_index "chili_pepper_sections", ["slug"], name: "index_chili_pepper_sections_on_slug", unique: true
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
