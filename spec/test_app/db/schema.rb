@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140514141708) do
+ActiveRecord::Schema.define(version: 20140514153016) do
+
+  create_table "chili_pepper_dishes", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "coeliac"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "vegetarian"
+  end
+
+  create_table "chili_pepper_items", force: true do |t|
+    t.integer  "section_id"
+    t.integer  "dish_id"
+    t.integer  "position"
+    t.decimal  "price",      precision: 5, scale: 2
+    t.integer  "column"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "chili_pepper_menus", force: true do |t|
     t.string   "name"
@@ -23,6 +42,7 @@ ActiveRecord::Schema.define(version: 20140514141708) do
     t.integer  "menu_type"
     t.string   "availability"
     t.decimal  "price",        precision: 5, scale: 2
+    t.boolean  "published"
   end
 
   add_index "chili_pepper_menus", ["slug"], name: "index_chili_pepper_menus_on_slug", unique: true

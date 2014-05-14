@@ -11,13 +11,13 @@ module ChiliPepper
       end
 
       it 'should be given a position' do
-        chili_pepper_section = FactoryGirl.create(:chili_pepper_section, :position => nil)
-        chili_pepper_section.position.should_not be_nil
+        chili_pepper_menu = FactoryGirl.create(:chili_pepper_menu, :position => nil)
+        chili_pepper_menu.position.should_not be_nil
       end
 
       it 'is given a slug on creation' do
-        chili_pepper_section = FactoryGirl.create(:chili_pepper_section)
-        chili_pepper_section.slug.should == 'appetizers'
+        chili_pepper_menu = FactoryGirl.create(:chili_pepper_menu)
+        chili_pepper_menu.slug.should == 'a-la-carte'
       end
   end
 end
