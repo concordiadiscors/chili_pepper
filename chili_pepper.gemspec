@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = ChiliPepper::VERSION
   s.authors     = ["Loic Seigland"]
   s.email       = ["loic@loicseigland.ie"]
-  s.homepage    = "http://loicseigland.ie"
+  s.homepage    = ""
   s.summary     = "Rapid Creation of CMS for restaurant websites."
   s.description = "Using in-place editing etc."
 
@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 4.1"
   s.add_dependency "acts_as_list", '~> 0.4.0'
   s.add_dependency 'friendly_id', '~> 5.0.0'
+  s.add_dependency 'devise', '~> 3.2'
   s.add_development_dependency 'codeclimate-test-reporter'
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'capybara'
