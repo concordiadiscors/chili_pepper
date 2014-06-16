@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140612152411) do
+ActiveRecord::Schema.define(version: 20140616163238) do
 
   create_table "chili_pepper_admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -38,6 +38,10 @@ ActiveRecord::Schema.define(version: 20140612152411) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "vegetarian"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   create_table "chili_pepper_items", force: true do |t|
@@ -59,8 +63,16 @@ ActiveRecord::Schema.define(version: 20140612152411) do
     t.string   "slug"
     t.integer  "menu_type"
     t.string   "availability"
-    t.decimal  "price",        precision: 5, scale: 2
+    t.decimal  "price",                         precision: 5, scale: 2
     t.boolean  "published"
+    t.string   "downloadable_pdf_file_name"
+    t.string   "downloadable_pdf_content_type"
+    t.integer  "downloadable_pdf_file_size"
+    t.datetime "downloadable_pdf_updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "chili_pepper_menus", ["slug"], name: "index_chili_pepper_menus_on_slug", unique: true
@@ -73,6 +85,10 @@ ActiveRecord::Schema.define(version: 20140612152411) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "chili_pepper_sections", ["slug"], name: "index_chili_pepper_sections_on_slug", unique: true

@@ -6,5 +6,8 @@ FactoryGirl.define do
 	description 'Our selection of gorgeous appetizers'
 	name 'Appetizers'
 	position 1
+  image_file_name { 'spec/resources/img_3.jpg' }
+  image_content_type { 'image/jpg' }
+  image_file_size { 1024 }
   end
 end
