@@ -20,9 +20,9 @@ feature "Update Menu" do
 		
 		visit "/chili_pepper/menus/new"
 		page.should have_content "New Menu"
-		# fill_in "Name", with: 'Babou'
-	 #    click_button "Update Menu"
-	 #    page.should have_content('Babou')
+		fill_in "Name", with: 'Babou'
+    click_button "Create Menu"
+    page.should have_content('Babou')
 	end		
 
 # end

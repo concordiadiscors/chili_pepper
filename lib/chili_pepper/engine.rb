@@ -3,6 +3,7 @@ require 'acts_as_list'
 require 'friendly_id'
 require 'paperclip'
 require 'haml-rails'
+require 'simple_form'
 
 module ChiliPepper
   class Engine < ::Rails::Engine

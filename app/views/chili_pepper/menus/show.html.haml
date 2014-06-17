@@ -1,2 +1,14 @@
-<h1>Menus#show</h1>
-<p>Find me in app/views/chili_pepper/menus/show.html.erb</p>
+%hgroup
+  %h1
+    = @menu.name
+/   = @menu.display_availability
+/ = @menu.display_description
+
+
+/ %section.menu_image
+/ - if admin_signed_in?
+/   %ul.admin
+/     %li.edit
+/       = link_to "Edit Menu", custom_edit_menu_path(@menu, @section), :class => "admin-controls-edit", :remote => true
+/     %li.delete
+/       = link_to "Delete Menu", menu_path(@menu), :method => :delete, :class => "admin-controls-delete"

@@ -7,6 +7,7 @@ module ChiliPepper
   	extend FriendlyId
   friendly_id :name, use: :slugged
   has_attached_file :image, :styles => { :medium => "1200x720>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :downloadable_pdf
 
   end
 end

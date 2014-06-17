@@ -8,6 +8,7 @@ PATH
       haml-rails (~> 0.5.3)
       paperclip (~> 4.1)
       rails (~> 4.1)
+      simple_form (~> 3.0)
 
 GEM
   remote: https://rubygems.org/
@@ -175,6 +176,9 @@ GEM
       rspec-mocks (~> 3.0.0)
       rspec-support (~> 3.0.0)
     rspec-support (3.0.0)
+    simple_form (3.0.2)
+      actionpack (~> 4.0)
+      activemodel (~> 4.0)
     simplecov (0.8.2)
       docile (~> 1.1.0)
       multi_json

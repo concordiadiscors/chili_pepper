@@ -1,0 +1,29 @@
+= simple_form_for(@menu) do |f|
+  %ul
+    = f.input :name
+    = f.input :published
+    = f.input :availability
+    = f.input :description
+    = f.input :price
+
+    %fieldset
+      = f.input :downloadable_pdf #, :label => admin_pdf_label(@menu)
+    %fieldset
+      / = admin_show_img(@menu)
+      = f.input :image
+
+    
+    / %fieldset.menu_notes
+    /   %p.form_tag
+    /     Menu Notes
+    /   %ul
+    /     = f.simple_fields_for :menu_annotations do |note_builder|
+    /       = render 'menu_annotation_fields', f: note_builder 
+    /   %li.add_annotation
+    /     = link_to_add_fields "Add note", f, :menu_annotations
+    
+      
+    
+    = f.input :menu_type, :as => :hidden, :input_html => { :value => @menu.menu_type}
+    -# hidden_field_tag 'origin_section', @origin_section
+    = f.submit :class =>'submit'

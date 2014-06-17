@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'devise', '~> 3.2'
   s.add_dependency 'paperclip', '~> 4.1'
   s.add_dependency 'haml-rails', '~> 0.5.3'
+  s.add_dependency 'simple_form', '~> 3.0'
   s.add_development_dependency 'codeclimate-test-reporter'
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'capybara'
