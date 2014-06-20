@@ -4,6 +4,8 @@ require 'friendly_id'
 require 'paperclip'
 require 'haml-rails'
 require 'simple_form'
+require 'draper'
+require 'redcarpet'
 
 module ChiliPepper
   class Engine < ::Rails::Engine

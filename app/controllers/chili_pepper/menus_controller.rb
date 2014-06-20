@@ -9,7 +9,8 @@ module ChiliPepper
     end
 
     def show
-      @menu = Menu.find_by_slug(params[:id])
+      @menu = Menu.find_by_slug(params[:id]).decorate
+      render :layout => 'chili_pepper/menu'
     end
 
     def new
@@ -28,9 +29,18 @@ module ChiliPepper
     end
 
     def edit
+      @menu = Menu.find_by_slug(params[:id])
     end
 
     def update
+      @menu = Menu.find_by_slug(params[:id])
+      if @menu.update(menu_params)
+        redirect_to :action => 'show', :id => @menu
+        # set_annotations_positions(@menu)
+        # clear_menu_caches
+      else 
+          render :action => :edit
+      end
     end
 
     def destroy
