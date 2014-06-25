@@ -9,24 +9,21 @@ module ChiliPepper
       menu_type = params[:menu_type] || :food
       if admin_signed_in?
         @menu = Menu.where(menu_type: menu_type).first
-        if @menu.present?
-          redirect_to @menu
-        else
-          redirect_to new_menu_path
-        end
+        redirect_to @menu.present? ? @menu : new_menu_path
       else
         @menu = Menu.published.where(menu_type: menu_type).first
-        if @menu.present?
-          redirect_to menu_path(@menu)
-        else
-          redirect_to main_app.root_path
-        end
+        redirect_to @menu.present? ? @menu : main_app.root_path
       end
     end
 
     def show
+      if @menu.sections.any?
+        redirect_to menu_section_path(@menu, @menu.sections.first)
+      else
+        @section = ''
+        render :layout => 'chili_pepper/menu'
+      end
       
-      render :layout => 'chili_pepper/menu'
     end
 
     def new

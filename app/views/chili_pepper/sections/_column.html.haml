@@ -1,0 +1,4 @@
+%ul.column{:id => "column_#{col_num+1}", :data =>  {'update-url' => sort_items_url, 'column-number' => col_num+1}}
+  - if item_group.present?
+    - item_group.each_with_index do |item,ind|
+      = render :partial => 'chili_pepper/items/item', :object => item, :locals => {:ind => ind, :i => col_num}, :as => :item

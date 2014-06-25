@@ -1,5 +1,13 @@
 ChiliPepper::Engine.routes.draw do
 
+  namespace :chili_pepper do
+  get 'items/sort'
+  end
+
+  namespace :chili_pepper do
+  get 'items/destroy'
+  end
+
   devise_for :admins, class_name: 'ChiliPepper::Admin', module: :devise
 
   resources :menus
@@ -11,5 +19,8 @@ ChiliPepper::Engine.routes.draw do
   end
 
   resources :dishes
+  resources :items do
+    collection { post :sort }
+  end
 
 end

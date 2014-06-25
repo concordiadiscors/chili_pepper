@@ -5,5 +5,10 @@ module ChiliPepper
     belongs_to :section, class_name: 'ChiliPepper::Section'
     validates :section, presence: true
     acts_as_list scope: :section
+
+    def self.column(col)
+      where(:column => col)
+    end
+    
   end
 end

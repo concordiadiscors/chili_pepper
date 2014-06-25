@@ -12,3 +12,8 @@
       - if admin_signed_in?
         %li
           = link_to raw("#{content_tag(:span, 'Add', :class => 'admin-controls-create_under')} New Section"), new_menu_section_path(:menu_id => @menu.id), :class => 'new_section', :remote => true
+  
+  %section#menu_content
+    = @section.show_section_description
+    - @columns_number.times do |i|
+      = render :partial => 'column', :locals => {:col_num => i, :item_group => @item_groups[i]}

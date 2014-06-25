@@ -4,11 +4,14 @@ module ChiliPepper
   class SectionsController < ApplicationController
     before_action :authenticate_admin!, except: :show
     before_action :menu
-    before_action :section, except: [:new, :create]
+    before_action :section, except: [:new, :create, :show]
 
     def show
-      @all_menu_sections = @menu.sections.order('position').select('id, name, position, slug')
-      render :layout => 'chili_pepper/menu'
+      @all_menu_sections = @menu.sections.order('position').select('id, name, position, slug').decorate
+      @section = Section.includes(:items).friendly.find(params[:id]).decorate
+      @columns_number = 2
+      @item_groups = @section.items.group_by(&:column)
+      render layout: 'chili_pepper/menu'
     end
 
     def new
