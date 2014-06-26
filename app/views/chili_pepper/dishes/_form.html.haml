@@ -1,0 +1,26 @@
+= simple_form_for(@dish) do |f|
+  %ul
+    / - if @section.menu.menu_type == 'food'
+    / = f.input :name #, :url => autocomplete_dish_name_dishes_path, :as => :autocomplete
+    /- else
+    = f.input :name
+    = f.input :description, :as => :text
+    / - if @section.menu.menu_type == 'food'
+    %fieldset
+      = f.input :coeliac, :collection => ChiliPepper::Dish.coeliacs, :label_method => lambda {|x| x[0].humanize}, :value_method => lambda {|x| x[0]}
+      = f.input :vegetarian
+    %fieldset
+      -# = admin_show_dish_img(@dish)
+      = f.input :picture
+      
+    = f.simple_fields_for :items, @item do |item_form|
+      %fieldset
+        = item_form.input :price, :label => "Price as featured in #{@section.menu.name}"
+      %fieldset
+        = item_form.input :section_id, :as => :hidden, :input_html => { :value => @item.section_id}
+        = item_form.input :column, :as => :hidden, :input_html => { :value => @item.column}
+        / = item_form.association :menu_annotation, :collection => @section.menu.menu_annotations, :value_method => lambda {|x| x.id}, :label_method => lambda {|x| x.description}
+    = hidden_field_tag 'section_id', @section.id
+    - if @item.present?
+      = hidden_field_tag 'item_id', @item.id
+    = f.submit :class =>'submit'

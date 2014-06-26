@@ -12,9 +12,10 @@ Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../spec/test_app/config/environment", __FILE__)
   require 'rspec/rails'
-  require 'rspec/autorun'
+  require 'draper/test/rspec_integration'
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+
 
   RSpec.configure do |config|
     config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -75,6 +76,8 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
+
+  config.include Devise::TestHelpers, type: :controller
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:

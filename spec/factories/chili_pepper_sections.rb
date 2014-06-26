@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :chili_pepper_section, class: 'ChiliPepper::Section' do
-	association :menu, factory: :chili_pepper_menu, id: 1
+	association :menu, factory: :chili_pepper_menu
 	description 'Our selection of gorgeous appetizers'
 	name 'Appetizers'
 	position 1

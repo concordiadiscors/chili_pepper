@@ -8,7 +8,8 @@
 </head>
 <body>
 
-<%= yield %>
 
-</body>
+<%= content_for?(:content) ? yield(:content) : yield %>
+
+</body> 
 </html>

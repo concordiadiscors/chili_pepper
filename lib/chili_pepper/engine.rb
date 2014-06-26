@@ -1,8 +1,12 @@
 require 'rubygems'
 require 'acts_as_list'
 require 'friendly_id'
-require 'devise'
 require 'paperclip'
+require 'haml-rails'
+require 'simple_form'
+require 'draper'
+require 'redcarpet'
+require 'jquery-rails'
 
 module ChiliPepper
   class Engine < ::Rails::Engine

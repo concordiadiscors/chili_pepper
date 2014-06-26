@@ -10,9 +10,6 @@ module ChiliPepper
       FactoryGirl.build(:chili_pepper_item, section_id: 3).should_not be_valid
   end
 
-  it 'belongs to a valid dish' do
-    FactoryGirl.build(:chili_pepper_item, dish_id: 3).should_not be_valid
-    end
 
       it 'should be given a position' do
         chili_pepper_item = FactoryGirl.create(:chili_pepper_item, :position => nil)

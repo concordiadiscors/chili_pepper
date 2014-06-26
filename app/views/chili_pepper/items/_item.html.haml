@@ -1,0 +1,20 @@
+- cache_or_admin item do
+  =  content_tag_for(:li, item) do
+    / = show_item_photograph(item)
+    
+    %h4.dish_name
+      = item.show_extra_informations
+      = item.dish.name
+      = item.show_price
+      / = item.show_annotation
+    
+      - if admin_signed_in?
+        %span.edit.admin
+          = link_to "Edit Dish", edit_dish_path(item.dish, section_id: item.section_id, item_id: item.id), class: "admin-controls-small_edit"
+        %span.delete.admin
+          = link_to "Delete Dish", item, :method => :delete, :class => "admin-controls-small_delete"
+        %span.item_handle.admin-controls-move_up_down
+          Move
+    
+    = item.show_description
+    

@@ -12,6 +12,9 @@ Devise.setup do |config|
   # with default "from" parameter.
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 
+  config.router_name = :chili_pepper
+  config.parent_controller = 'ChiliPepper::ApplicationController'
+
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 

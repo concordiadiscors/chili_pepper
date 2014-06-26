@@ -1,0 +1,10 @@
+= simple_form_for([@menu, @section], :remote => true) do |f|
+  %ul
+    = f.input :name
+    = f.input :description
+    %fieldset
+      -# admin_show_section_img(@section)
+      = f.input :image
+    = f.input :menu_id, :as => :hidden
+    -# hidden_field_tag 'origin_section', @origin_section
+    = f.submit :class =>'submit'
