@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module ChiliPepper
   class ItemDecorator < Draper::Decorator
     delegate_all
