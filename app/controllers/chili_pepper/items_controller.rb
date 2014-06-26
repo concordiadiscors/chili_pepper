@@ -6,6 +6,12 @@ module ChiliPepper
     end
 
     def destroy
+      @item = Item.find(params[:id])
+      @section = @item.section
+      @item.destroy
+      redirect_to menu_section_path(@section.menu, @section)
+
     end
   end
+  
 end

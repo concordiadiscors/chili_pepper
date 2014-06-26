@@ -4,7 +4,7 @@ feature 'Only Allows Admin to manage sections' do
 
    let(:menu) {FactoryGirl.create(:chili_pepper_menu)}
    let(:section) {FactoryGirl.create(:chili_pepper_section, :menu => menu)}
-   let(:dish) {FactoryGirl.create(:chili_pepper_dish)}   
+   let(:dish) {FactoryGirl.create(:chili_pepper_dish)}  
 
  scenario 'does not allow non-admin me to visit the new or edit pages' do
    visit chili_pepper.new_dish_path
@@ -43,29 +43,40 @@ feature 'allows admins to manage sections' do
 
   scenario 'adds a dish' do
     visit chili_pepper.menu_section_path(section.menu, section)
-
-    # expect(page).to have_content 'New Dish'
-    # fill_in 'Name', with: 'DishBabou'
-    # click_button 'Create Dish'
-    # expect(current_path).to eq(chili_pepper.menu_section_path(section.menu, section))
-    # expect(page).to have_content('DishBabou')
+    within ('#column_1') do
+      click_link 'New Dish'
+    end
+    expect(page).to have_content 'New Dish'
+    fill_in 'Name', with: 'DishBabou'
+    click_button 'Create Dish'
+    expect(current_path).to eq(chili_pepper.menu_section_path(section.menu, section))
+    expect(page).to have_content('DishBabou')
   end
 
-  # scenario 'edit menu' do
-  #   visit chili_pepper.edit_dish_path(menu, section)
-  #   expect(page).to have_content('Edit')
-  #   fill_in 'Name', with: 'PoteSection Edited'
-  #   click_button 'Update Section'
-  #   expect(current_path).to eq(chili_pepper.dish_path(menu, section))
-  #   expect(page).to have_content('PoteSection Edited')
-  # end
+  scenario 'edit menu' do
+    item = FactoryGirl.create(:chili_pepper_item, dish: dish, section: section, :column => 0)
+    visit chili_pepper.menu_section_path(section.menu, section)
+    expect(page).to have_selector('ul.column li#item_1')
+    within 'ul.column li#item_1' do
+      click_link 'Edit'
+    end
+    expect(page).to have_content("Edit #{dish.name}")
+    fill_in 'Name', with: 'PoteDish Edited'
+    click_button 'Update Dish'
+    expect(current_path).to eq(chili_pepper.menu_section_path(menu, section))
+    within 'ul.column li#item_1' do
+      expect(page).to have_content('PoteDish Edited')
+    end
+  end
 
-  # scenario 'allows to delete menu' do
-  #   visit chili_pepper.dish_path(menu, section)
-  #   within("li#section_1") do
-  #     click_link 'Delete Section'
-  #   end
-  #   expect(current_path).to eq(chili_pepper.menu_path(menu))
-  # end
+  scenario 'allows to delete dish' do
+    item = FactoryGirl.create(:chili_pepper_item, dish: dish, section: section, :column => 0)
+    visit chili_pepper.menu_section_path(menu, section)
+    within 'ul.column li#item_1' do
+      click_link 'Delete Dish'
+    end
+    expect(current_path).to eq(chili_pepper.menu_section_path(menu, section))
+    expect(page).not_to have_selector('ul.column li#item_1')
+  end
 
 end

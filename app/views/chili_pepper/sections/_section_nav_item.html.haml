@@ -6,6 +6,6 @@
     
   - if admin_signed_in?
     %span.edit.admin
-      = link_to "Edit Section", edit_menu_section_path(@menu, section, :origin_section => @section.id), :class => "admin-controls-small_edit", :remote => true
+      = link_to "Edit Section", edit_menu_section_path(@menu, section, :origin_section => @section.id), :class => "admin-controls-small_edit"
     %span.delete.admin
-      = link_to "Delete Section", menu_section_path(@menu, section, :origin_section => @section.id), :method => :delete, :class => "admin-controls-small_delete"
+      = link_to "Delete Section", menu_section_path(@menu, section), :method => :delete, :class => "admin-controls-small_delete"

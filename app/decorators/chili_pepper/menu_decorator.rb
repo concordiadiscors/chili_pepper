@@ -1,6 +1,5 @@
 module ChiliPepper
   class MenuDecorator < Draper::Decorator
-    include Draper::LazyHelpers
     delegate_all
 
     def display_price

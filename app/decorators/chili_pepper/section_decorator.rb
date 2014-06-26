@@ -1,7 +1,7 @@
 module ChiliPepper
   class SectionDecorator < Draper::Decorator
-    include Draper::LazyHelpers
     delegate_all
+    decorates_association :items
 
     def show_section_description
       if description?

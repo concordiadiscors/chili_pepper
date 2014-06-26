@@ -2,3 +2,7 @@
   - if item_group.present?
     - item_group.each_with_index do |item,ind|
       = render :partial => 'chili_pepper/items/item', :object => item, :locals => {:ind => ind, :i => col_num}, :as => :item
+
+  - if admin_signed_in?
+    %li
+      = link_to raw("#{content_tag(:span, 'Add', :class => 'admin-controls-smaller_green_add')} New Dish"), new_dish_path(:section_id => section_id, column: col_num), :class => 'new_dish'
