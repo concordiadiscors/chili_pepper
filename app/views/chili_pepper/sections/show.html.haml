@@ -11,9 +11,9 @@
       = render :partial => 'section_nav_item', :collection => @all_menu_sections, :as => :section
       - if admin_signed_in?
         %li
-          = link_to raw("#{content_tag(:span, 'Add', :class => 'admin-controls-create_under')} New Section"), new_menu_section_path(:menu_id => @menu.id), :class => 'new_section', :remote => true
+          = link_to raw("#{content_tag(:span, 'Add', :class => 'admin-controls-create_under')} New Section"), new_menu_section_path(:menu_id => @menu.id), :class => 'new_section'
   
-  %section#menu_content
+  %section#menu_dishes
     = @section.show_section_description
     - @columns_number.times do |i|
       = render :partial => 'column', :locals => {:col_num => i, :item_group => @item_groups[i], :section_id => @section.id}

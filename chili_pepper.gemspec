@@ -17,6 +17,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails', '~> 4.1'
   s.add_dependency 'jquery-rails'
+  s.add_dependency 'jquery-ui-rails'
+  s.add_dependency 'coffee-rails'
   s.add_dependency 'acts_as_list', '~> 0.4.0'
   s.add_dependency 'friendly_id', '~> 5.0.0'
   s.add_dependency 'devise', '~> 3.2'
@@ -26,6 +28,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'draper', '~> 1.3'
   s.add_dependency 'redcarpet', '~>3.1'
 
+
   s.add_development_dependency 'codeclimate-test-reporter'
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'capybara'
@@ -34,5 +37,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'poltergeist'
   s.add_development_dependency 'factory_girl_rails'
   s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'database_cleaner'
+  s.add_development_dependency 'launchy'
 
 end

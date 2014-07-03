@@ -4,13 +4,13 @@ module ChiliPepper
   class SectionsController < ApplicationController
     before_action :authenticate_admin!, except: :show
     before_action :menu
-    before_action :section, except: [:new, :create, :show]
+    before_action :section, except: [:new, :create, :show, :sort]
 
     def show
       @all_menu_sections = @menu.sections.order('position').select('id, name, position, slug').decorate
       @section = Section.includes(:items).friendly.find(params[:id]).decorate
       @columns_number = 2
-      @item_groups = @section.items.group_by(&:column)
+      @item_groups = @section.items.sort_by(&:position).group_by(&:column)
       render layout: 'chili_pepper/menu'
     end
 
@@ -45,6 +45,11 @@ module ChiliPepper
     end
 
     def sort
+      params[:section].each_with_index do |id, index|
+        Section.find(id).update_attributes(position: index+1 )
+      end
+      Section.find(params[:section].first).menu.touch
+      render nothing: true
     end
 
     private

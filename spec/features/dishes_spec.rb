@@ -1,3 +1,4 @@
+
 require 'spec_helper'
 
 feature 'Only Allows Admin to manage sections' do
@@ -26,7 +27,7 @@ feature 'Only Allows Admin to manage sections' do
 
 end
 
-feature 'allows admins to manage sections' do
+feature 'allows admins to manage diehse' do
 
   let(:menu) {FactoryGirl.create(:chili_pepper_menu)}
   let(:section) {FactoryGirl.create(:chili_pepper_section, :menu => menu)}
@@ -78,5 +79,48 @@ feature 'allows admins to manage sections' do
     expect(current_path).to eq(chili_pepper.menu_section_path(menu, section))
     expect(page).not_to have_selector('ul.column li#item_1')
   end
-
 end
+
+# feature 'sorts dish elements' do
+#   let(:menu) {FactoryGirl.create(:chili_pepper_menu)}
+#   let(:section) {FactoryGirl.create(:chili_pepper_section, :menu => menu)}
+
+#   before :each do
+#     admin = FactoryGirl.create(:chili_pepper_admin)
+#     visit chili_pepper.new_admin_session_path
+#     fill_in 'Email', with: admin.email
+#     fill_in 'Password', with: admin.password
+#     click_button 'Sign in'
+#     menu.sections << section
+#     created_column_1 = FactoryGirl.create_list(:chili_pepper_item, 4, :column => 0)
+#     created_column_2 = FactoryGirl.create_list(:chili_pepper_item, 4, :column => 1)
+#     section.items << created_column_1
+#     section.items << created_column_2
+#     visit chili_pepper.menu_path(menu)
+
+
+
+#   end
+
+#   scenario 'sorts items in single column', js: true do
+#     page.execute_script File.read(File.expand_path('../../support/jquery.simulate.drag-sortable.js', __FILE__)) 
+#     page.execute_script %Q{ $('#item_3').simulateDragSortable({ move: -2 }); } 
+#      sleep 1
+#      expect(page.body).to match(/item_3(.|\n)*item_1(.|\n)*item_2/) 
+
+#     expect(ChiliPepper::Item.find(3).position).to eq(1)
+
+
+#   end
+
+
+
+
+
+
+
+
+# end
+
+
+

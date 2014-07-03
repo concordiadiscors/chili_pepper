@@ -7,6 +7,7 @@ require 'simple_form'
 require 'draper'
 require 'redcarpet'
 require 'jquery-rails'
+require 'jquery-ui-rails'
 
 module ChiliPepper
   class Engine < ::Rails::Engine

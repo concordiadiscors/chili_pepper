@@ -6,7 +6,7 @@
     = @menu.pdf_link
 
 
-    %section#menu_container
+    %section#menu_container{:class => "#{'chili_pepper_admin' if admin_signed_in?}"}
 
       %section#menu_header{:class => "#{'price_featured' if @menu.price?}"}
   
