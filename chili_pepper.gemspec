@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'simple_form', '~> 3.0'
   s.add_dependency 'draper', '~> 1.3'
   s.add_dependency 'redcarpet', '~>3.1'
+  s.add_dependency 'rails3-jquery-autocomplete'
 
 
   s.add_development_dependency 'codeclimate-test-reporter'

@@ -8,6 +8,7 @@ require 'draper'
 require 'redcarpet'
 require 'jquery-rails'
 require 'jquery-ui-rails'
+require 'rails3-jquery-autocomplete'
 
 module ChiliPepper
   class Engine < ::Rails::Engine

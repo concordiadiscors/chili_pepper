@@ -5,6 +5,7 @@ module ChiliPepper
     before_action :authenticate_admin!
     before_action :section, :menu
     before_action :find_dish, :find_item, :except => [:new, :create]
+    autocomplete :dish, :name, :display_value => :name_for_autocomplete
 
     def new
         @dish = Dish.new
