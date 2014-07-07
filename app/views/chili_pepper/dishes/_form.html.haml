@@ -3,7 +3,7 @@
     / - if @section.menu.menu_type == 'food'
     / = f.input :name #, :url => autocomplete_dish_name_dishes_path, :as => :autocomplete
     /- else
-    = f.input :name
+    = f.input :name, :url => chili_pepper.autocomplete_dish_name_dishes_path, :as => :autocomplete
     = f.input :description, :as => :text
     / - if @section.menu.menu_type == 'food'
     %fieldset

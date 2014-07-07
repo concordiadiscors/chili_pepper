@@ -13,7 +13,7 @@
 
 //= require jquery
 //= require jquery_ujs
-//- require jquery-ui
+//= require jquery-ui
 //= require chili_pepper
 
 //= require_tree .

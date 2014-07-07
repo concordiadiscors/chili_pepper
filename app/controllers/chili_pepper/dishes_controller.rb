@@ -3,9 +3,9 @@ require_dependency "chili_pepper/application_controller"
 module ChiliPepper
   class DishesController < ApplicationController
     before_action :authenticate_admin!
-    before_action :section, :menu
-    before_action :find_dish, :find_item, :except => [:new, :create]
-    autocomplete :dish, :name, :display_value => :name_for_autocomplete
+    before_action :section, :menu, :except => [:autocomplete_dish_name]
+    before_action :find_dish, :find_item, :except => [:new, :create, :autocomplete_dish_name]
+    autocomplete :dish, :name, :class_name => "chili_pepper/dish" #, :display_value => :name_for_autocomplete
 
     def new
         @dish = Dish.new
