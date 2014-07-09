@@ -1,5 +1,5 @@
 = simple_form_for(@dish) do |f|
-  %ul
+  %ul#dish_attributes_list{:data =>  {'engine_root' => chili_pepper.dishes_path}}
     / - if @section.menu.menu_type == 'food'
     / = f.input :name #, :url => autocomplete_dish_name_dishes_path, :as => :autocomplete
     /- else

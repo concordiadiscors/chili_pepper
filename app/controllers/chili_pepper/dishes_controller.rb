@@ -4,12 +4,13 @@ module ChiliPepper
   class DishesController < ApplicationController
     before_action :authenticate_admin!
     before_action :section, :menu, :except => [:autocomplete_dish_name]
-    before_action :find_dish, :find_item, :except => [:new, :create, :autocomplete_dish_name]
+    before_action :find_dish, :except => [:new, :create, :autocomplete_dish_name]
+    before_action :find_item, :except => [:new, :create, :autocomplete_dish_name]
     autocomplete :dish, :name, :class_name => "chili_pepper/dish" #, :display_value => :name_for_autocomplete
 
     def new
         @dish = Dish.new
-        @item = @dish.items.build(:section_id => @section.id, :column => params[:column])
+        @item = build_item
     end
 
     def create
@@ -49,7 +50,12 @@ module ChiliPepper
     end
 
     def find_item
-      @item = Item.find(params[:item_id])
+      @item = if params[:item_id].present?
+                Item.find(params[:item_id])
+              else
+                build_item
+              end
+
     end
 
     def section
@@ -58,6 +64,10 @@ module ChiliPepper
 
     def menu
       @menu = @section.menu
+    end
+
+    def build_item
+      @dish.items.build(:section_id => @section.id, :column => params[:column])
     end
 
     def dish_params
