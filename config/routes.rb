@@ -12,7 +12,7 @@ ChiliPepper::Engine.routes.draw do
   end
 
   resources :dishes do
-    get :autocomplete_dish_name, :on => :collection
+    get :autocomplete_dish_name, on: :collection
   end
   resources :items do
     collection { post :sort }

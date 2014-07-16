@@ -9,18 +9,17 @@ module ChiliPepper
     autocomplete :dish, :name, :class_name => "chili_pepper/dish" #, :display_value => :name_for_autocomplete
 
     def new
-        @dish = Dish.new
-        @item = build_item
+      @dish = Dish.new
+      @item = build_item
     end
 
     def create
       @dish = Dish.new(dish_params)
       if @dish.save!
         redirect_to_menu_section
-      else 
+      else
         render action: :new
       end
-
     end
 
     def edit
