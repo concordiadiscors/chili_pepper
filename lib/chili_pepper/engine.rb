@@ -11,6 +11,20 @@ require 'jquery-ui-rails'
 require 'rails3-jquery-autocomplete'
 
 module ChiliPepper
+
+
+  class << self
+       mattr_accessor :columns_number
+       self.columns_number = 2
+
+       # add default values of more config vars here
+   end
+
+    # this function maps the vars from your app into your engine
+    def self.setup(&block)
+       yield self
+    end
+
   class Engine < ::Rails::Engine
     isolate_namespace ChiliPepper
 
@@ -19,8 +33,11 @@ module ChiliPepper
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
 
-    config.to_prepare do
-      ApplicationController.helper(ActionView::Helpers::ApplicationHelper)
-    end
+    # config.to_prepare do
+    #   ApplicationController.helper(ActionView::Helpers::ApplicationHelper)
+    # end
+
+
+
   end
 end

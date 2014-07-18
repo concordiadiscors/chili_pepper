@@ -4,7 +4,7 @@ require 'spec_helper'
 feature 'Only Allows Admin to manage sections' do
 
    let(:menu) {FactoryGirl.create(:chili_pepper_menu)}
-   let(:section) {FactoryGirl.create(:chili_pepper_section, :menu => menu)}
+   let(:section) {FactoryGirl.create(:chili_pepper_section, menu: menu)}
    let(:dish) {FactoryGirl.create(:chili_pepper_dish)}  
 
  scenario 'does not allow non-admin me to visit the new or edit pages' do
@@ -15,8 +15,8 @@ feature 'Only Allows Admin to manage sections' do
  end
 
  scenario 'displays all dishes in give section' do
-    created_column_1 = FactoryGirl.create_list(:chili_pepper_item, 4, :column => 0)
-    created_column_2 = FactoryGirl.create_list(:chili_pepper_item, 4, :column => 1)
+    created_column_1 = FactoryGirl.create_list(:chili_pepper_item, 4, column: 0)
+    created_column_2 = FactoryGirl.create_list(:chili_pepper_item, 4, column: 1)
     section.items << created_column_1
     section.items << created_column_2
     visit chili_pepper.menu_path(menu)
@@ -30,7 +30,7 @@ end
 feature 'allows admins to manage diehse' do
 
   let(:menu) {FactoryGirl.create(:chili_pepper_menu)}
-  let(:section) {FactoryGirl.create(:chili_pepper_section, :menu => menu)}
+  let(:section) {FactoryGirl.create(:chili_pepper_section, menu: menu)}
   let(:dish) {FactoryGirl.create(:chili_pepper_dish)}
 
   before :each do
@@ -55,7 +55,7 @@ feature 'allows admins to manage diehse' do
   end
 
   scenario 'edit menu' do
-    item = FactoryGirl.create(:chili_pepper_item, dish: dish, section: section, :column => 0)
+    item = FactoryGirl.create(:chili_pepper_item, dish: dish, section: section, column: 0)
     visit chili_pepper.menu_section_path(section.menu, section)
     expect(page).to have_selector('ul.column li#item_1')
     within 'ul.column li#item_1' do
@@ -71,7 +71,7 @@ feature 'allows admins to manage diehse' do
   end
 
   scenario 'allows to delete dish' do
-    item = FactoryGirl.create(:chili_pepper_item, dish: dish, section: section, :column => 0)
+    item = FactoryGirl.create(:chili_pepper_item, dish: dish, section: section, column: 0)
     visit chili_pepper.menu_section_path(menu, section)
     within 'ul.column li#item_1' do
       click_link 'Delete Dish'
@@ -83,7 +83,7 @@ end
 
 # feature 'sorts dish elements' do
 #   let(:menu) {FactoryGirl.create(:chili_pepper_menu)}
-#   let(:section) {FactoryGirl.create(:chili_pepper_section, :menu => menu)}
+#   let(:section) {FactoryGirl.create(:chili_pepper_section, menu: menu)}
 
 #   before :each do
 #     admin = FactoryGirl.create(:chili_pepper_admin)
@@ -92,8 +92,8 @@ end
 #     fill_in 'Password', with: admin.password
 #     click_button 'Sign in'
 #     menu.sections << section
-#     created_column_1 = FactoryGirl.create_list(:chili_pepper_item, 4, :column => 0)
-#     created_column_2 = FactoryGirl.create_list(:chili_pepper_item, 4, :column => 1)
+#     created_column_1 = FactoryGirl.create_list(:chili_pepper_item, 4, column: 0)
+#     created_column_2 = FactoryGirl.create_list(:chili_pepper_item, 4, column: 1)
 #     section.items << created_column_1
 #     section.items << created_column_2
 #     visit chili_pepper.menu_path(menu)

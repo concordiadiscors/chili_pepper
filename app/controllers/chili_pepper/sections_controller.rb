@@ -9,7 +9,7 @@ module ChiliPepper
     def show
       @all_menu_sections = @menu.sections.order('position').select('id, name, position, slug').decorate
       @section = Section.includes(:items).friendly.find(params[:id]).decorate
-      @columns_number = 2
+      @columns_number = ChiliPepper.columns_number
       @item_groups = @section.items.sort_by(&:position).group_by(&:column)
       render layout: 'chili_pepper/menu'
     end
