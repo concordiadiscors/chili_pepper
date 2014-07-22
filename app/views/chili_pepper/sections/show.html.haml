@@ -5,7 +5,7 @@
 
   %section#side_information
     %h2
-      = @section.name
+      = @menu.name
   
     %ul#sections_nav{:data =>  {'update-url' => sort_menu_sections_url}}
       = render :partial => 'section_nav_item', :collection => @all_menu_sections, :as => :section

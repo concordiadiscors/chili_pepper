@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: chili_pepper_sections
+#
+#  id                 :integer          not null, primary key
+#  menu_id            :integer
+#  description        :text
+#  name               :string(255)
+#  position           :integer
+#  created_at         :datetime
+#  updated_at         :datetime
+#  slug               :string(255)
+#  image_file_name    :string(255)
+#  image_content_type :string(255)
+#  image_file_size    :integer
+#  image_updated_at   :datetime
+#
+
 require 'spec_helper'
 
 module ChiliPepper

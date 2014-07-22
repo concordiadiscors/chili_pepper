@@ -7,8 +7,8 @@ module ChiliPepper
     def display_price
         if price?
           euro_sign = h.content_tag(:span, '€', :class => euro_sign)
-          price = h.number_to_currency(price, :unit => '')
-          price_content = h.content_tag(:span, euro_sign + price, :id => 'big_price')
+          price_to_display = h.number_to_currency(price, :unit => '')
+          price_content = h.content_tag(:fiv, euro_sign + price_to_display, :id => 'big_price')
       end
     end
 

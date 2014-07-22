@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: chili_pepper_items
+#
+#  id         :integer          not null, primary key
+#  section_id :integer
+#  dish_id    :integer
+#  position   :integer
+#  price      :decimal(5, 2)
+#  column     :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do

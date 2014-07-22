@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: chili_pepper_dishes
+#
+#  id                   :integer          not null, primary key
+#  name                 :string(255)
+#  description          :string(255)
+#  coeliac              :integer
+#  created_at           :datetime
+#  updated_at           :datetime
+#  vegetarian           :boolean
+#  picture_file_name    :string(255)
+#  picture_content_type :string(255)
+#  picture_file_size    :integer
+#  picture_updated_at   :datetime
+#
+
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do

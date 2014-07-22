@@ -8,15 +8,21 @@ module ChiliPepper
     def index
       menu_type = params[:menu_type] || :food
       if admin_signed_in?
-        @menu = Menu.where(menu_type: menu_type).first
+        @menu = Menu
+                .where(menu_type: Menu::menu_types[menu_type])
+                .first
         redirect_to @menu.present? ? @menu : new_menu_path
       else
-        @menu = Menu.published.where(menu_type: menu_type).first
+        @menu = Menu.published
+                .where(menu_type: Menu::menu_types[menu_type])
+                .first
         redirect_to @menu.present? ? @menu : main_app.root_path
       end
     end
 
     def show
+      @similar_menus = pick_similar_menus
+
       if @menu.sections.any?
         redirect_to menu_section_path(@menu, @menu.sections.first)
       else
@@ -63,6 +69,14 @@ module ChiliPepper
 
     def menu
       @menu = Menu.friendly.find(params[:id]).decorate
+    end
+
+    def pick_similar_menus
+      if admin_signed_in?
+        Menu.same_type_menus(@menu.menu_type)
+      else
+        Menu.same_type_menus(@menu.menu_type)
+      end
     end
 
     def menu_params

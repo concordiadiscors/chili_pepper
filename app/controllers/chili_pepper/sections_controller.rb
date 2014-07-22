@@ -1,4 +1,4 @@
-require_dependency "chili_pepper/application_controller"
+require_dependency 'chili_pepper/application_controller'
 
 module ChiliPepper
   class SectionsController < ApplicationController
@@ -7,7 +7,11 @@ module ChiliPepper
     before_action :section, except: [:new, :create, :show, :sort]
 
     def show
-      @all_menu_sections = @menu.sections.order('position').select('id, name, position, slug').decorate
+      @similar_menus = pick_similar_menus
+      @all_menu_sections = @menu.sections
+                                .order('position')
+                                .select('id, name, position, slug')
+                                .decorate
       @section = Section.includes(:items).friendly.find(params[:id]).decorate
       @columns_number = ChiliPepper.columns_number
       @item_groups = @section.items.sort_by(&:position).group_by(&:column)
@@ -28,7 +32,6 @@ module ChiliPepper
     end
 
     def edit
-
     end
 
     def update
@@ -46,7 +49,7 @@ module ChiliPepper
 
     def sort
       params[:section].each_with_index do |id, index|
-        Section.find(id).update_attributes(position: index+1 )
+        Section.find(id).update_attributes(position: index + 1)
       end
       Section.find(params[:section].first).menu.touch
       render nothing: true
@@ -58,6 +61,14 @@ module ChiliPepper
       @menu = Menu.friendly.find(params[:menu_id]).decorate
     end
 
+    def pick_similar_menus
+      if admin_signed_in?
+        Menu.same_type_menus(@menu.menu_type)
+      else
+        Menu.same_type_menus(@menu.menu_type)
+      end
+    end
+
     def section
       @section = Section.friendly.find(params[:id]).decorate
     end
@@ -65,7 +76,5 @@ module ChiliPepper
     def section_params
       params.require(:section).permit(:name, :description, :image, :menu_id)
     end
-        
-
   end
 end

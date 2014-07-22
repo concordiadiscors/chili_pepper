@@ -1,3 +1,28 @@
+# == Schema Information
+#
+# Table name: chili_pepper_menus
+#
+#  id                            :integer          not null, primary key
+#  name                          :string(255)
+#  position                      :integer
+#  description                   :string(255)
+#  created_at                    :datetime
+#  updated_at                    :datetime
+#  slug                          :string(255)
+#  menu_type                     :integer
+#  availability                  :string(255)
+#  price                         :decimal(5, 2)
+#  published                     :boolean
+#  downloadable_pdf_file_name    :string(255)
+#  downloadable_pdf_content_type :string(255)
+#  downloadable_pdf_file_size    :integer
+#  downloadable_pdf_updated_at   :datetime
+#  image_file_name               :string(255)
+#  image_content_type            :string(255)
+#  image_file_size               :integer
+#  image_updated_at              :datetime
+#
+
 require 'spec_helper'
 
 module ChiliPepper

@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: chili_pepper_dishes
+#
+#  id                   :integer          not null, primary key
+#  name                 :string(255)
+#  description          :string(255)
+#  coeliac              :integer
+#  created_at           :datetime
+#  updated_at           :datetime
+#  vegetarian           :boolean
+#  picture_file_name    :string(255)
+#  picture_content_type :string(255)
+#  picture_file_size    :integer
+#  picture_updated_at   :datetime
+#
+
 module ChiliPepper
   class Dish < ActiveRecord::Base
     enum coeliac: [:coeliac_friendly, :not_coeliac_friendly, :coeliac_option_available]
