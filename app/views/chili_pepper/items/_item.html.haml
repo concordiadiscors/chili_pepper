@@ -2,8 +2,8 @@
   =  content_tag_for(:li, item) do
     / = show_item_photograph(item)
     
+    = item.show_extra_informations
     %h4.dish_name
-      = item.show_extra_informations
       = item.dish.name
       = item.show_price
       / = item.show_annotation

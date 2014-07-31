@@ -17,15 +17,19 @@
                 = @menu.name
                 %span
                   menu
+                - if admin_signed_in?
+                  %span.edit
+                    = link_to "Edit Menu", edit_menu_path(@menu, section: @section), :class => "admin-controls-edit"
+                  %span.delete
+                    = link_to "Delete Menu", menu_path(@menu), :method => :delete, :class => "admin-controls-delete"
+           
               = @menu.display_availability
               -# @menu.display_description
 
-              - if admin_signed_in?
-                %ul.admin
-                  %li.edit
-                    = link_to "Edit Menu", edit_menu_path(@menu, section: @section), :class => "admin-controls-edit"
-                  %li.delete
-                    = link_to "Delete Menu", menu_path(@menu), :method => :delete, :class => "admin-controls-delete"
+
+          - if @menu.image?
+            %section#menu_image
+              = image_tag @menu.image.url(:medium)
           
 
       %section#menu_content

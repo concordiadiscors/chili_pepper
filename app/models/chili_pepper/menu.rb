@@ -32,9 +32,11 @@ module ChiliPepper
     extend FriendlyId
     friendly_id :name, use: :slugged
     has_attached_file :image,
-                      styles: { medium: '1200x720>', thumb: '100x100>' },
+                      styles: { medium: ChiliPepper.menu_medium_image, thumb: '100x100>' },
                       default_url: '/images/:style/missing.png'
+    validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
     has_attached_file :downloadable_pdf
+    validates_attachment_content_type :downloadable_pdf,  content_type: ['application/pdf']
 
     def self.published
       where published: true
@@ -52,6 +54,10 @@ module ChiliPepper
       where(menu_type: menu_types[menu_type])
       .select('id, name, slug, position, menu_type, published')
       .order('position')
-    end 
+    end
+
+    def food_menu?
+      menu_type == 'food'
+    end
   end
 end
