@@ -43,7 +43,7 @@ module ChiliPepper
         # set_annotations_positions(@menu)
         # clear_menu_caches
       else
-        render action: 'new'
+        render action: :new
       end
     end
 
