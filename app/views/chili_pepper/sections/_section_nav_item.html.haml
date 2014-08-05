@@ -2,7 +2,5 @@
   = link_to_unless_current section.name, menu_section_path(@menu, section), :class => "section_link", :data => {'link-section-id' => "menu_id_#{@menu.id}", 'link-section-class' => "menu_#{@menu.position} menu food"}
     
   - if admin_signed_in?
-    %span.edit.admin
-      = link_to "Edit Section", edit_menu_section_path(@menu, section, :origin_section => @section.id), :class => "admin-controls-small_edit"
-    %span.delete.admin
-      = link_to "Delete Section", menu_section_path(@menu, section), :method => :delete, :class => "admin-controls-small_delete"
+    = link_to "Edit Section", edit_menu_section_path(@menu, section, :origin_section => @section.id), :class => "edit admin"
+    = link_to "Delete Section", menu_section_path(@menu, section), :method => :delete, :class => "delete admin"

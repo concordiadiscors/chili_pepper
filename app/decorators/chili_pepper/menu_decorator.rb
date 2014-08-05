@@ -32,9 +32,10 @@ module ChiliPepper
       
       def pdf_link
         if downloadable_pdf?
-          link = h.link_to("Download PDF", downloadable_pdf.url, onclick: "javascript: _gaq.push(['_trackPageview', '/downloads/#{slug}']);")
+          pdf_size = h.content_tag(:span, "(#{h.number_to_human_size(downloadable_pdf.size)})")
+          link = h.link_to(h.raw("Download PDF #{pdf_size}"), downloadable_pdf.url, onclick: "javascript: _gaq.push(['_trackPageview', '/downloads/#{slug}']);")
           h.content_tag(:p, link, class: 'pdf_download')
-        end   
+        end
       end
       
       def footnotes

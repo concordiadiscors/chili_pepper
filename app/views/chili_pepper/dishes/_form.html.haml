@@ -10,8 +10,8 @@
       = f.input :coeliac, :collection => ChiliPepper::Dish.coeliacs, :label_method => lambda {|x| x[0].humanize}, :value_method => lambda {|x| x[0]}
       = f.input :vegetarian
     / %fieldset
-      -# = admin_show_dish_img(@dish)
-      -# = f.input :picture
+    -# = admin_show_dish_img(@dish)
+    -# = f.input :picture
       
     = f.simple_fields_for :items, @item do |item_form|
       %fieldset

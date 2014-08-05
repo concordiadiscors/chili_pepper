@@ -1,4 +1,4 @@
-- @title = "#{@menu.name}, #{@section.name} | Marcopolo Restaurant in Limerick"
+- @title = "#{@menu.name}, #{@section.name} | #{ChiliPepper.restaurant_name}"
 - @section_id, @section_class = "menu_id_#{@menu.id}", "menu_#{@menu.position} menu #{@menu.menu_type}"
 
 - content_for :menu_content do
@@ -13,7 +13,7 @@
       = render :partial => 'section_nav_item', :collection => @all_menu_sections, :as => :section
       - if admin_signed_in?
         %li
-          = link_to raw("#{content_tag(:span, 'Add', :class => 'admin-controls-create_under')} New Section"), new_menu_section_path(:menu_id => @menu.id), :class => 'new_section'
+          = link_to raw("#{content_tag(:span, 'Add', :class => 'admin-controls-create_under')} New Section"), new_menu_section_path(:menu_id => @menu.id), :class => 'new admin'
     = @menu.pdf_link
   
   %section#menu_dishes

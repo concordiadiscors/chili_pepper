@@ -3,9 +3,6 @@
   - cache_or_admin [@menu, @section] do
     = render :partial => 'chili_pepper/menus/navigation'
 
-
-
-
     %section#menu_container{:class => "#{'chili_pepper_admin' if admin_signed_in?}"}
 
       %section#menu_header{:class => "#{'price_featured' if @menu.price?}"}
@@ -18,10 +15,8 @@
                 %span
                   menu
                 - if admin_signed_in?
-                  %span.edit
-                    = link_to "Edit Menu", edit_menu_path(@menu, section: @section), :class => "admin-controls-edit"
-                  %span.delete
-                    = link_to "Delete Menu", menu_path(@menu), :method => :delete, :class => "admin-controls-delete"
+                  = link_to "Edit Menu", edit_menu_path(@menu, section: @section), :class => "edit admin"
+                  = link_to "Delete Menu", menu_path(@menu), :method => :delete, :class => "delete admin"
            
               = @menu.display_availability
               -# @menu.display_description

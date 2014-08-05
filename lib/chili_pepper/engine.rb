@@ -14,9 +14,10 @@ module ChiliPepper
 
 
   class << self
-       mattr_accessor :columns_number, :menu_medium_image
+       mattr_accessor :columns_number, :menu_medium_image, :restaurant_name
        self.columns_number = 2
        self.menu_medium_image = '430x184>'
+       self.restaurant_name = 'Restaurant'
 
        # add default values of more config vars here
    end
