@@ -1,28 +1,30 @@
 - content_for :content do
 
   - cache_or_admin [@menu, @section] do
-    / = render :partial => 'menus/navigation'
-
-    = @menu.pdf_link
-
+    = render :partial => 'chili_pepper/menus/navigation'
 
     %section#menu_container{:class => "#{'chili_pepper_admin' if admin_signed_in?}"}
 
       %section#menu_header{:class => "#{'price_featured' if @menu.price?}"}
-  
-        %hgroup
-          = @menu.display_price
-          %h1
-            = @menu.name
-          = @menu.display_availability
-        = @menu.display_description
+        %section#menu_main_header
+          %hgroup
+            = @menu.display_price
+            #menu_main_info
+              %h1
+                = @menu.name
+                %span
+                  menu
+                - if admin_signed_in?
+                  = link_to "Edit Menu", edit_menu_path(@menu, section: @section), :class => "edit admin"
+                  = link_to "Delete Menu", menu_path(@menu), :method => :delete, :class => "delete admin"
+           
+              = @menu.display_availability
+              -# @menu.display_description
 
-        - if admin_signed_in?
-          %ul.admin
-            %li.edit
-              -# link_to "Edit Menu", custom_edit_menu_path(@menu, @section), :class => "admin-controls-edit", :remote => true
-            %li.delete
-              = link_to "Delete Menu", menu_path(@menu), :method => :delete, :class => "admin-controls-delete"
+
+          - if @menu.image?
+            %section#menu_image
+              = image_tag @menu.image.url(:medium)
           
 
       %section#menu_content

@@ -6,64 +6,64 @@ module ChiliPepper
 
     def display_price
         if price?
-          euro_sign = h.content_tag(:span, '€', :class => euro_sign)
-          price = h.number_to_currency(price, :unit => '')
-          price_content = h.content_tag(:span, euro_sign + price, :id => 'big_price')
+          euro_sign = h.content_tag(:span, '€', class: euro_sign)
+          price_to_display = h.number_to_currency(price, unit: '')
+          price_content = h.content_tag(:div, euro_sign + price_to_display, id: 'big_price')
       end
     end
 
       def display_availability
         if availability?
-          h.content_tag(:h2, availability, :class => 'menu_availibilities')
+          h.content_tag(:h2, availability, class: 'menu_availibilities')
         end
       end
       
       def display_description
         if description?
-          h.content_tag(:h3, h.markdown(description), :class => 'menu_description')
+          h.content_tag(:h3, h.markdown(description), class: 'menu_description')
         end
       end
       
       # def header_img
       #   if menu_image?
-      #     h.image_tag menu_image.url(), :style => "margin-top: #{menu_img_margin_top(menu_image.url)}"
+      #     h.image_tag menu_image.url(), style: "margin-top: #{menu_img_margin_top(menu_image.url)}"
       #   end
       # end
       
       def pdf_link
         if downloadable_pdf?
-          link = h.link_to('Download PDF', downloadable_pdf.url, :onclick => "javascript: _gaq.push(['_trackPageview', '/downloads/#{slug}']);")
-          h.content_tag(:p, link, :class => 'pdf_download')
-        end   
+          pdf_size = h.content_tag(:span, "(#{h.number_to_human_size(downloadable_pdf.size)})")
+          link = h.link_to(h.raw("Download PDF #{pdf_size}"), downloadable_pdf.url, onclick: "javascript: _gaq.push(['_trackPageview', '/downloads/#{slug}']);")
+          h.content_tag(:p, link, class: 'pdf_download')
+        end
       end
       
-      # def footnotes
-      #   return if menu_type == 'drinks'
+      def footnotes
+        return if menu_type == 'drinks'
         
-      #   footnotes_class = "menu_footnotes"
+        footnotes_class = "menu_footnotes"
         
-      #   if menu_annotations.present?
-      #     footnotes_class += ' with_supplements'
-      #     section_content = health_footnotes + supplementary_footnotes_columns
+        # if menu_annotations.present?
+        #   footnotes_class += ' with_supplements'
+        #   section_content = health_footnotes + supplementary_footnotes_columns
           
-      #   else
-      #     footnotes_class += ' no_supplements'
-      #     section_content = health_footnotes
-      #   end
-      #   h.content_tag(:section, section_content, :class => footnotes_class)
-      # end
+        # else
+          # footnotes_class += ' no_supplements'
+        section_content = health_footnotes
+        # end
+        h.content_tag(:section, section_content, class: footnotes_class)
+      end
       
       private
         
-      # def health_footnotes 
-      #   list_content = ''
-      #   health_footnotes = {'vegetarian' => 'Vegetarian Dish', 'coeliac' => 'Coeliac friendly', 'coeliac_option' => 'Coeliac Option available'}
-      #   health_footnotes.each do |key, value|
-      #     list_content << h.raw(h.content_tag(:li, h.content_tag(:span) + value, :class => key))
-      #   end
-      #   h.raw(h.content_tag(:ul, h.raw(list_content), :class => 'icons_legend'))
-        
-      # end
+      def health_footnotes 
+        list_content = ''
+        health_footnotes = {'vegetarian' => 'Vegetarian', 'coeliac' => 'Coeliac friendly', 'coeliac_option' => 'Coeliac Option Available, please ask your waiter'}
+        health_footnotes.each do |key, value|
+          list_content << h.raw(h.content_tag(:li, h.content_tag(:span) + value, class: key))
+        end
+        h.raw(h.content_tag(:ul, h.raw(list_content), class: 'icons_legend'))
+      end
       
       # def supplementary_footnotes_columns
       #   supplementary_footnotes_columns = ''
@@ -78,7 +78,7 @@ module ChiliPepper
       # end
       
       # def list_item(ma)
-      #   h.content_tag(:li, h.content_tag(:span, ('*' * ma.position ), :class => 'dish_stars') + ma.description)
+      #   h.content_tag(:li, h.content_tag(:span, ('*' * ma.position ), class: 'dish_stars') + ma.description)
       # end
       
       # def menu_img_margin_top(img)

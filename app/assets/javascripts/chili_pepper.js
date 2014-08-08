@@ -10,5 +10,6 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery.ui.all
+
+//= require autocomplete-rails
 //= require_tree ./chili_pepper

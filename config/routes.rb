@@ -1,6 +1,5 @@
 ChiliPepper::Engine.routes.draw do
 
-
   devise_for :admins, class_name: 'ChiliPepper::Admin', module: :devise
 
   resources :menus
@@ -11,7 +10,10 @@ ChiliPepper::Engine.routes.draw do
     end
   end
 
-  resources :dishes
+  resources :dishes do
+    get :autocomplete_dish_name, on: :collection
+  end
+
   resources :items do
     collection { post :sort }
   end

@@ -5,4 +5,4 @@
 
   - if admin_signed_in?
     %li
-      = link_to raw("#{content_tag(:span, 'Add', :class => 'admin-controls-smaller_green_add')} New Dish"), new_dish_path(:section_id => section_id, column: col_num), :class => 'new_dish'
+      = link_to raw("#{content_tag(:span, 'Add', :class => 'admin-controls-smaller_green_add')} New Dish"), new_dish_path(:section_id => section_id, column: col_num), :class => 'admin new'
