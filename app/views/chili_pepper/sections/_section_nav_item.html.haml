@@ -1,0 +1,6 @@
+= content_tag_for :li, section, :class => "section_link_#{(section_counter+1)%7}#{' current' if current_page? menu_section_path(@menu, section)}#{' first' if section_counter == 0}" do
+  = link_to_unless_current section.name, menu_section_path(@menu, section), :class => "section_link", :data => {'link-section-id' => "menu_id_#{@menu.id}", 'link-section-class' => "menu_#{@menu.position} menu food"}
+    
+  - if admin_signed_in?
+    = link_to "Edit Section", edit_menu_section_path(@menu, section, :origin_section => @section.id), :class => "edit admin"
+    = link_to "Delete Section", menu_section_path(@menu, section), :method => :delete, :class => "delete admin"

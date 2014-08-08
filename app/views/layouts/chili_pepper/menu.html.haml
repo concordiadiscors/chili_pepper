@@ -1,0 +1,42 @@
+- content_for :content do
+
+  - cache_or_admin [@menu, @section] do
+    = render :partial => 'chili_pepper/menus/navigation'
+
+    %section#menu_container{:class => "#{'chili_pepper_admin' if admin_signed_in?}"}
+
+      %section#menu_header{:class => "#{'price_featured' if @menu.price?}"}
+        %section#menu_main_header
+          %hgroup
+            = @menu.display_price
+            #menu_main_info
+              %h1
+                = @menu.name
+                %span
+                  menu
+                - if admin_signed_in?
+                  = link_to "Edit Menu", edit_menu_path(@menu, section: @section), :class => "edit admin"
+                  = link_to "Delete Menu", menu_path(@menu), :method => :delete, :class => "delete admin"
+           
+              = @menu.display_availability
+              -# @menu.display_description
+
+
+          - if @menu.image?
+            %section#menu_image
+              = image_tag @menu.image.url(:medium)
+          
+
+      %section#menu_content
+      
+        = yield(:menu_content) or yield
+      / = @menu.footnotes
+    
+
+
+            
+  
+          
+          
+
+= render :file => 'layouts/application' 

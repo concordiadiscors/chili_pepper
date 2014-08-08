@@ -11,7 +11,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140508094807) do
+ActiveRecord::Schema.define(version: 20140616163238) do
+
+  create_table "chili_pepper_admins", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "chili_pepper_admins", ["email"], name: "index_chili_pepper_admins_on_email", unique: true
+  add_index "chili_pepper_admins", ["reset_password_token"], name: "index_chili_pepper_admins_on_reset_password_token", unique: true
+
+  create_table "chili_pepper_dishes", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "coeliac"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "vegetarian"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+  end
+
+  create_table "chili_pepper_items", force: true do |t|
+    t.integer  "section_id"
+    t.integer  "dish_id"
+    t.integer  "position"
+    t.decimal  "price",      precision: 5, scale: 2
+    t.integer  "column"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "chili_pepper_menus", force: true do |t|
     t.string   "name"
@@ -22,10 +63,35 @@ ActiveRecord::Schema.define(version: 20140508094807) do
     t.string   "slug"
     t.integer  "menu_type"
     t.string   "availability"
-    t.decimal  "price",        precision: 5, scale: 2
+    t.decimal  "price",                         precision: 5, scale: 2
+    t.boolean  "published"
+    t.string   "downloadable_pdf_file_name"
+    t.string   "downloadable_pdf_content_type"
+    t.integer  "downloadable_pdf_file_size"
+    t.datetime "downloadable_pdf_updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "chili_pepper_menus", ["slug"], name: "index_chili_pepper_menus_on_slug", unique: true
+
+  create_table "chili_pepper_sections", force: true do |t|
+    t.integer  "menu_id"
+    t.text     "description"
+    t.string   "name"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "slug"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "chili_pepper_sections", ["slug"], name: "index_chili_pepper_sections_on_slug", unique: true
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false

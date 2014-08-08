@@ -1,0 +1,13 @@
+- content_for :menu_content do
+
+  %section#side_information
+    %h2
+      = @menu.name
+  
+    %ul#sections_nav{:data =>  {'update-url' => sort_menu_sections_url(:menu_id => @menu.id)}}
+      %li
+        - if admin_signed_in?
+          = link_to raw("#{content_tag(:span, 'Add', :class => 'admin-controls-create_under')} New Section"), new_menu_section_path(:menu_id => @menu.id), :class => 'new_section'
+  
+  %section#menu_content
+

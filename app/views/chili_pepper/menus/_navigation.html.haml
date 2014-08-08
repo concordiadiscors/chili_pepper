@@ -1,0 +1,12 @@
+%nav#menu_nav{itemscope: '', itemtype: "http://schema.org/Restaurant"}
+  %ul.regular{data:  {'update-url' => sort_menus_url}}
+    - @similar_menus.each_with_index do |m,i|
+      = content_tag_for :li, m, class: "menu_link_#{i+1}#{' current' if @menu.id == m.id}#{' unpublished' if m.published == false}" do
+        - if @menu.id != m.id
+          = link_to(m.name, m, data: {'link-section-id' => "menu_id_#{m.id}", 'link-section-class' => "menu_#{m.position} menu #{@menu.menu_type}"}, itemprop: 'menu')
+        - else 
+          = m.name
+
+    - if admin_signed_in?
+      %li
+        = link_to "New Menu", new_menu_path(menu_type: @menu.menu_type), class: 'admin new'
