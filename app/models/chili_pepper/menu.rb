@@ -32,6 +32,9 @@ module ChiliPepper
     extend FriendlyId
     friendly_id :name, use: :slugged
 
+    has_many :annotations, dependent: :destroy
+    accepts_nested_attributes_for :annotations, allow_destroy: true
+
     has_attached_file :image,
                       styles: {
                         medium: ChiliPepper.menu_medium_image,

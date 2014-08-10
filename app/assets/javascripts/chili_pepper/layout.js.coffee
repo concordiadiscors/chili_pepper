@@ -6,5 +6,7 @@ jQuery ->
   if $('#new_dish').length
     DishForm.act_on_select()
 
+  MenuForm.init()
+
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140616163238) do
+ActiveRecord::Schema.define(version: 20140810170608) do
 
   create_table "chili_pepper_admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(version: 20140616163238) do
   add_index "chili_pepper_admins", ["email"], name: "index_chili_pepper_admins_on_email", unique: true
   add_index "chili_pepper_admins", ["reset_password_token"], name: "index_chili_pepper_admins_on_reset_password_token", unique: true
 
+  create_table "chili_pepper_annotations", force: true do |t|
+    t.integer  "menu_id"
+    t.integer  "position"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "chili_pepper_dishes", force: true do |t|
     t.string   "name"
     t.string   "description"
@@ -48,10 +56,11 @@ ActiveRecord::Schema.define(version: 20140616163238) do
     t.integer  "section_id"
     t.integer  "dish_id"
     t.integer  "position"
-    t.decimal  "price",      precision: 5, scale: 2
+    t.decimal  "price",         precision: 5, scale: 2
     t.integer  "column"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "annotation_id"
   end
 
   create_table "chili_pepper_menus", force: true do |t|
