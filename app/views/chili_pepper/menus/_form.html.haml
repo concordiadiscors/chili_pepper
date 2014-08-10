@@ -13,14 +13,14 @@
       = f.input :image
 
     
-    / %fieldset.menu_notes
-    /   %p.form_tag
-    /     Menu Notes
-    /   %ul
-    /     = f.simple_fields_for :menu_annotations do |note_builder|
-    /       = render 'menu_annotation_fields', f: note_builder 
-    /   %li.add_annotation
-    /     = link_to_add_fields "Add note", f, :menu_annotations
+    %fieldset.menu_notes
+      %p.form_tag
+        Menu Notes
+      %ul
+        = f.simple_fields_for :annotations do |note_builder|
+          = render 'annotation_fields', f: note_builder 
+      %li.add_annotation
+        = link_to_add_fields "Add note", f, :annotations
     
       
     

@@ -75,7 +75,7 @@ module ChiliPepper
         :picture,
         :coeliac,
         :vegetarian,
-        items_attributes: [:section_id, :price, :column, :dish_id, :id]
+        items_attributes: [:section_id, :price, :column, :dish_id, :id, :annotation_id]
       )
     end
   end

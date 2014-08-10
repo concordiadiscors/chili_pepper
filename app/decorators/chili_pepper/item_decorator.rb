@@ -24,6 +24,12 @@ module ChiliPepper
       end
     end
 
+    def show_annotation
+      if annotation.present?
+        h.content_tag(:span, annotation.description, class: 'annotation')
+      end
+    end
+
     def show_description
       if dish.description?
         h.content_tag(:p, h.markdown(dish.description), class: 'dish_description')

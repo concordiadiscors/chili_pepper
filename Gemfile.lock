@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    chili_pepper (0.0.1)
+    chili_pepper (0.0.2)
       acts_as_list (~> 0.4.0)
       coffee-rails
       devise (~> 3.2)
@@ -190,7 +190,7 @@ GEM
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     redcarpet (3.1.2)
-    request_store (1.0.7)
+    request_store (1.0.8)
     rspec (3.0.0)
       rspec-core (~> 3.0.0)
       rspec-expectations (~> 3.0.0)

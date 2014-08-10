@@ -88,7 +88,8 @@ module ChiliPepper
         :price,
         :published,
         :downloadable_pdf,
-        :image
+        :image,
+        annotations_attributes: [:id, :description, :_destroy]
         )
     end
   end

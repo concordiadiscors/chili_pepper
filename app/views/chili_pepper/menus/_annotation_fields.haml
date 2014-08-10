@@ -1,0 +1,5 @@
+%li
+  %ul.annotation_field
+    = f.input :description, :label => false
+    = f.input :_destroy, :as => :hidden
+  = link_to "remove", '#', class: "remove_fields"

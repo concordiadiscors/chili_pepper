@@ -19,7 +19,7 @@
       %fieldset
         = item_form.input :section_id, :as => :hidden, :input_html => { :value => @item.section_id}
         = item_form.input :column, :as => :hidden, :input_html => { :value => @item.column}
-        / = item_form.association :menu_annotation, :collection => @section.menu.menu_annotations, :value_method => lambda {|x| x.id}, :label_method => lambda {|x| x.description}
+        = item_form.association :annotation, :collection => @menu.annotations, :value_method => lambda {|x| x.id}, :label_method => lambda {|x| x.description}
     = hidden_field_tag 'section_id', @section.id
     - if @item.present?
       = hidden_field_tag 'item_id', @item.id

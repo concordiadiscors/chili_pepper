@@ -6,7 +6,7 @@
     %h4.dish_name
       = item.dish.name
       = item.show_price
-      / = item.show_annotation
+      = item.show_annotation
     
       - if admin_signed_in?
         = link_to "Edit Dish", edit_dish_path(item.dish, section_id: item.section_id, item_id: item.id), class: "admin edit"
