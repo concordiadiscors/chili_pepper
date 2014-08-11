@@ -69,5 +69,22 @@ module ChiliPepper
     def food_menu?
       menu_type == 'food'
     end
+
+    def duplicate
+      new_menu = Menu.create!(name: "#{name} copy", menu_type: menu_type)
+      sections.each do |original_section|
+        new_section = original_section.dup
+        new_section.menu_id = new_menu.id
+        new_section.save
+        original_section.items.each do |item|
+          Item.create!(
+            section_id: new_section.id,
+            dish_id: item.dish_id,
+            column: item.column,
+            position: item.position
+          )
+        end
+      end
+    end
   end
 end

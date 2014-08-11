@@ -3,7 +3,7 @@ require_dependency 'chili_pepper/application_controller'
 module ChiliPepper
   class MenusController < ApplicationController
     before_action :authenticate_admin!, except: [:show, :index]
-    before_action :menu, except: [:index, :new, :create]
+    before_action :menu, except: [:index, :new, :create, :sort]
 
     def index
       menu_type = params[:menu_type] || :food
@@ -63,6 +63,13 @@ module ChiliPepper
     def destroy
       @menu.destroy
       redirect_to action: :index
+    end
+
+    def sort
+      params[:menu].each_with_index do |id, index|
+        Menu.find(id).update_attributes(position: index + 1)
+      end
+      render nothing: true
     end
 
     private
