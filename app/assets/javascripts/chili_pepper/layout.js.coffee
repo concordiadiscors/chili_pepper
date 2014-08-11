@@ -10,5 +10,9 @@ jQuery ->
   MenuForm.init()
   MenusAdminControls.init_sort()
 
+  $('#dish_name').on 'autocompleteresponse', (event, ui) ->
+    if ui.content?[0].id.length == 0 || $('.edit_dish').length
+      $(this).autocomplete('close')
+
 
 

@@ -72,6 +72,11 @@ module ChiliPepper
       render nothing: true
     end
 
+    def duplicate
+      @menu.duplicate
+      redirect_to menu_path(Menu.same_type_menus(@menu.menu_type).last)
+    end
+
     private
 
     def menu

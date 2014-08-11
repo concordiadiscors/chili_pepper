@@ -6,7 +6,7 @@ module ChiliPepper
     before_action :section, :menu, except: [:autocomplete_dish_name]
     before_action :find_dish, except: [:new, :create, :autocomplete_dish_name]
     before_action :find_item, except: [:new, :create, :autocomplete_dish_name]
-    autocomplete :dish, :name, class_name: 'chili_pepper/dish' #, display_value: :name_for_autocomplete
+    autocomplete :dish, :name, class_name: 'chili_pepper/dish' , display_value: :name_for_autocomplete
 
     def new
       @dish = Dish.new
