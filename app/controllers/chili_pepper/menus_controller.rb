@@ -9,12 +9,12 @@ module ChiliPepper
       menu_type = params[:menu_type] || :food
       if admin_signed_in?
         @menu = Menu
-                .where(menu_type: Menu::menu_types[menu_type])
+                .where(menu_type: Menu.menu_types[menu_type])
                 .first
         redirect_to @menu.present? ? @menu : new_menu_path
       else
         @menu = Menu.published
-                .where(menu_type: Menu::menu_types[menu_type])
+                .where(menu_type: Menu.menu_types[menu_type])
                 .first
         redirect_to @menu.present? ? @menu : main_app.root_path
       end
@@ -24,7 +24,7 @@ module ChiliPepper
       @similar_menus = pick_similar_menus
 
       if @menu.sections.any?
-        redirect_to menu_section_path(@menu, @menu.sections.first)
+        redirect_to menu_section_path(@menu, @menu.sections.position_sorted.first)
       else
         @section = ''
         render layout: 'chili_pepper/menu'
