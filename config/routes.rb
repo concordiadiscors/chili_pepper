@@ -2,7 +2,10 @@ ChiliPepper::Engine.routes.draw do
 
   devise_for :admins, class_name: 'ChiliPepper::Admin', module: :devise
 
-  resources :menus
+  resources :menus do
+    member { post :duplicate }
+  end
+
   resources :menus do
     collection { post :sort }
     resources :sections, path: '', except: [:index] do

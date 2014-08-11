@@ -11,5 +11,4 @@
 // about supported directives.
 //
 
-//= require autocomplete-rails
 //= require_tree ./chili_pepper

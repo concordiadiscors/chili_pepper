@@ -16,9 +16,9 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
 
   s.add_dependency 'rails', '~> 4.1'
-  s.add_dependency 'jquery-rails'
-  s.add_dependency 'jquery-ui-rails'
-  s.add_dependency 'coffee-rails'
+  s.add_dependency 'jquery-rails', '~> 3.1.1'
+  s.add_dependency 'jquery-ui-rails', '~> 5.0.0'
+  s.add_dependency 'coffee-rails', '~> 4.0.1'
   s.add_dependency 'acts_as_list', '~> 0.4.0'
   s.add_dependency 'friendly_id', '~> 5.0.0'
   s.add_dependency 'devise', '~> 3.2'
@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'simple_form', '~> 3.0'
   s.add_dependency 'draper', '~> 1.3'
   s.add_dependency 'redcarpet', '~>3.1'
-  s.add_dependency 'rails3-jquery-autocomplete'
+  s.add_dependency 'rails3-jquery-autocomplete', '~> 1.0.14'
 
   s.add_development_dependency 'codeclimate-test-reporter'
   s.add_development_dependency 'rspec-rails'

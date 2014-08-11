@@ -15,6 +15,7 @@
                 %span
                   menu
                 - if admin_signed_in?
+                  = link_to "Duplicate Menu", duplicate_menu_path(@menu), :method => :post, :class => "duplicate admin"
                   = link_to "Edit Menu", edit_menu_path(@menu, section: @section), :class => "edit admin"
                   = link_to "Delete Menu", menu_path(@menu), :method => :delete, :class => "delete admin"
            

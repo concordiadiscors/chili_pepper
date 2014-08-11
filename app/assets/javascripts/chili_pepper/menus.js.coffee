@@ -10,11 +10,12 @@
       $(this).parent('li').before($(this).data('fields').replace(regexp, time))
       event.preventDefault()
 
-# @MenusAdminControls =
-#   init_sort: ->
-#     $('#menu_nav ul').removeClass('regular').addClass('sortable').sortable(
-#       axis: 'x'
-#       update: ->
-#        $.post($(this).data('update-url'), $(this).sortable('serialize'))
-#     )
+@MenusAdminControls =
+  init_sort: ->
+    if $('.chili_pepper_admin').length
+      $('#menu_nav ul').sortable(
+        axis: 'x'
+        update: ->
+         $.post($(this).data('update-url'), $(this).sortable('serialize'))
+      )
           
