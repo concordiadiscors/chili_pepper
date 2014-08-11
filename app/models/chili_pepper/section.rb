@@ -18,17 +18,21 @@
 
 module ChiliPepper
   class Section < ActiveRecord::Base
-  belongs_to :menu, class_name: "ChiliPepper::Menu", touch: true
-  validates :menu, :name, presence: true
-  has_many :items, class_name: "ChiliPepper::Item", dependent: :destroy
-  acts_as_list scope: :menu
+    belongs_to :menu, class_name: 'ChiliPepper::Menu', touch: true
+    validates :menu, :name, presence: true
+    has_many :items, class_name: 'ChiliPepper::Item', dependent: :destroy
+    acts_as_list scope: :menu
     extend FriendlyId
-  friendly_id :name, use: :slugged
+    friendly_id :name, use: :slugged
     has_attached_file :image,
                       styles: {
                         medium: ChiliPepper.section_medium_image,
                         thumb: '100x100>'
                       }
     validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+
+    def self.position_sorted
+      order('position asc')
+    end
   end
 end
