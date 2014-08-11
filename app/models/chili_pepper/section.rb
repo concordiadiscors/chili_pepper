@@ -18,7 +18,7 @@
 
 module ChiliPepper
   class Section < ActiveRecord::Base
-	belongs_to :menu, class_name: "ChiliPepper::Menu"
+	belongs_to :menu, class_name: "ChiliPepper::Menu", touch: true
 	validates :menu, :name, presence: true
 	has_many :items, class_name: "ChiliPepper::Item", dependent: :destroy
 	acts_as_list scope: :menu
