@@ -74,7 +74,7 @@ module ChiliPepper
     end
 
     def section_params
-      params.require(:section).permit(:name, :description, :image, :menu_id)
+      params.require(:section).permit(:name, :description, :image, :menu_id, :heading)
     end
   end
 end

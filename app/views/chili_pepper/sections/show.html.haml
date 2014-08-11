@@ -17,9 +17,10 @@
     = @menu.pdf_link
   
   %section#menu_dishes
-    = @section.show_section_description
-    - @columns_number.times do |i|
-      = render :partial => 'column', :locals => {:col_num => i, :item_group => @item_groups[i], :section_id => @section.id}
+    = @section.show_section_header
+    %section#dishes_list
+      - @columns_number.times do |i|
+        = render :partial => 'column', :locals => {:col_num => i, :item_group => @item_groups[i], :section_id => @section.id}
     = @menu.footnotes
     
 
