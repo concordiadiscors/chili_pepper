@@ -87,7 +87,7 @@ module ChiliPepper
       if admin_signed_in?
         Menu.same_type_menus(@menu.menu_type)
       else
-        Menu.same_type_menus(@menu.menu_type)
+        Menu.published.same_type_menus(@menu.menu_type)
       end
     end
 
