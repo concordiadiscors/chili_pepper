@@ -14,7 +14,7 @@ module ChiliPepper
 
       def display_availability
         if availability?
-          h.content_tag(:h2, availability, class: 'menu_availibilities')
+          h.content_tag(:h2, h.markdown(availability), class: 'menu_availibilities')
         end
       end
       
