@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140810170608) do
+ActiveRecord::Schema.define(version: 20140811163304) do
 
   create_table "chili_pepper_admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(version: 20140810170608) do
     t.datetime "updated_at"
     t.string   "slug"
     t.integer  "menu_type"
-    t.string   "availability"
-    t.decimal  "price",                         precision: 5, scale: 2
+    t.text     "availability",                  limit: 255
+    t.decimal  "price",                                     precision: 5, scale: 2
     t.boolean  "published"
     t.string   "downloadable_pdf_file_name"
     t.string   "downloadable_pdf_content_type"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20140810170608) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "heading"
   end
 
   add_index "chili_pepper_sections", ["slug"], name: "index_chili_pepper_sections_on_slug", unique: true

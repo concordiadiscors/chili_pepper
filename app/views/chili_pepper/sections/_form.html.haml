@@ -1,8 +1,9 @@
 = simple_form_for([@menu, @section]) do |f|
   %ul
     = f.input :name
-    = f.input :description
     %fieldset
+      = f.input :heading
+      = f.input :description
       -# admin_show_section_img(@section)
       = f.input :image
     = f.input :menu_id, :as => :hidden

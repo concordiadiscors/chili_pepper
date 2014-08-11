@@ -20,7 +20,7 @@
                   = link_to "Delete Menu", menu_path(@menu), :method => :delete, :class => "delete admin"
            
               = @menu.display_availability
-              -# @menu.display_description
+              = @menu.display_description
 
 
           - if @menu.image?
