@@ -13,7 +13,7 @@ Devise.setup do |config|
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 
   config.router_name = :chili_pepper
-  config.parent_controller = 'ActionController::Base'
+  # config.parent_controller = 'ActionController::Base'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
