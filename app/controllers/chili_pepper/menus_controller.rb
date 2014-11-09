@@ -22,7 +22,6 @@ module ChiliPepper
 
     def show
       @similar_menus = pick_similar_menus
-
       if @menu.sections.any?
         redirect_to menu_section_path(@menu, @menu.sections.position_sorted.first)
       else
@@ -41,7 +40,7 @@ module ChiliPepper
       if @menu.save
         redirect_to action: 'show', id: @menu
         # set_annotations_positions(@menu)
-        # clear_menu_caches
+        clear_menu_caches
       else
         render action: :new
       end
@@ -54,7 +53,7 @@ module ChiliPepper
       if @menu.update(menu_params)
         redirect_to action: 'show', id: @menu
         # set_annotations_positions(@menu)
-        # clear_menu_caches
+        clear_menu_caches
       else
         render action: :edit
       end
@@ -62,6 +61,7 @@ module ChiliPepper
 
     def destroy
       @menu.destroy
+      clear_menu_caches
       redirect_to action: :index
     end
 
@@ -69,15 +69,21 @@ module ChiliPepper
       params[:menu].each_with_index do |id, index|
         Menu.find(id).update_attributes(position: index + 1)
       end
+      clear_menu_caches
       render nothing: true
     end
 
     def duplicate
       @menu.duplicate
+      clear_menu_caches
       redirect_to menu_path(Menu.same_type_menus(@menu.menu_type).last)
     end
 
     private
+
+    def clear_menu_caches
+      Menu.all.each(&:touch)
+    end
 
     def menu
       @menu = Menu.friendly.find(params[:id]).decorate
