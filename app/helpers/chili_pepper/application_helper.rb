@@ -7,7 +7,8 @@ module ChiliPepper
         no_intra_emphasis: true
       }
       rtxt = Redcarpet::Markdown.new(renderer, options).render(text)
-    return Regexp.new(/\A<p>(.*)<\/p>\Z/m).match(rtxt)[1].html_safe
+    matched_string = Regexp.new(/\A<p>(.*)<\/p>\Z/m).match(rtxt)
+    return matched_string[1].html_safe if matched_string.present?
     end
 
     def cache_or_admin(fragment_name, &block_to_be_executed)
